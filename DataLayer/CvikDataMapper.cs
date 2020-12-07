@@ -19,51 +19,82 @@ namespace DataLayer
 
         public async Task<bool> Delete(int id)
         {
-            WriteResult result = await database.Collection("cviky").Document(id.ToString()).DeleteAsync();
-            return true;
+            try
+            {
+                QuerySnapshot query = await database.Collection("cviky").WhereEqualTo("Id", id).GetSnapshotAsync();
+                foreach (DocumentSnapshot documentSnapshot in query.Documents)
+                {
+                    await documentSnapshot.Reference.DeleteAsync();
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public async Task<Cvik> GetById(int id)
         {
-            DocumentSnapshot document = await database.Collection("cviky").Document(id.ToString()).GetSnapshotAsync();
-            if (document.Exists)
+            try
             {
-                Dictionary<string, object> documentDictionary = document.ToDictionary();
-                return new Cvik(Int32.Parse(document.Id), documentDictionary["nazev"].ToString(), (int)documentDictionary["pocetOpakovani"], (int)documentDictionary["pocetSerii"], documentDictionary["poznamka"].ToString());
+                QuerySnapshot query = await database.Collection("cviky").WhereEqualTo("Id", id).GetSnapshotAsync();
+                foreach (DocumentSnapshot documentSnapshot in query.Documents)
+                {
+                    return documentSnapshot.ConvertTo<Cvik>();
+                }
+                return null;
             }
-            return null;
+            catch
+            {
+                return null;
+            }
 
 
         }
 
         public async Task<bool> Insert(Cvik value)
         {
-            DocumentReference docRef = database.Collection("cviky").Document(value.Id.ToString());
-            Dictionary<string, object> cvik = new Dictionary<string, object>
+            try
             {
-                { "nazev", value.Nazev },
-                { "pocetOpakovani", value.pocetOpakovani },
-                { "pocetSerii", value.pocetSerii },
-                { "poznamka", value.Poznamka },
-            };
-            await docRef.CreateAsync(cvik);
-            return true;
+                CollectionReference cvikyCollectionReference = database.Collection("cviky");
+                DocumentReference result = await cvikyCollectionReference.AddAsync(value);
+                if (result.GetSnapshotAsync().Result.Exists)
+                    return true;
+                else
+                    return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
 
         public async Task<bool> Update(Cvik value)
         {
-            DocumentReference docRef = database.Collection("cviky").Document(value.Id.ToString());
-            Dictionary<string, object> cvik = new Dictionary<string, object>
+            try
             {
-                {"nazev", value.Nazev },
-                { "pocetOpakovani", value.pocetOpakovani },
-                { "pocetSerii", value.pocetSerii },
-                { "poznamka", value.Poznamka },
-            };
-            await docRef.SetAsync(cvik);
-            return true;
+                QuerySnapshot query = await database.Collection("cviky").WhereEqualTo("Id", value.Id).GetSnapshotAsync();
+                foreach (DocumentSnapshot documentSnapshot in query.Documents)
+                {
+                    Dictionary<FieldPath, object> updates = new Dictionary<FieldPath, object>
+                    {
+                        { new FieldPath("Id"), value.Id },
+                        { new FieldPath("Nazev"), value.Nazev },
+                        { new FieldPath("Poznamka"), value.Poznamka },
+                        { new FieldPath("PocetOpakovani"), value.PocetOpakovani },
+                        { new FieldPath("PocetSerii"), value.PocetSerii }
+                    };
+                    await documentSnapshot.Reference.UpdateAsync(updates);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

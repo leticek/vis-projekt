@@ -20,5 +20,10 @@ namespace BusinessLayer
         public int TrenerId { get; set; }
         public string Nazev { get; set; }
         public List<int> Cviky { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {this.Id} TrenerId: {this.TrenerId} Nazev: {this.Nazev} Cviky: {this.Cviky}";
+        }
     }
 }

@@ -16,9 +16,31 @@ namespace DataLayer
             throw new NotImplementedException();
         }
 
-        public Task<Trenink> GetById(int id)
+        public async Task<Trenink> GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DocumentSnapshot document = await database.Collection("treninky").Document(id.ToString()).GetSnapshotAsync();
+                if (document.Exists)
+                {
+                    Dictionary<string, object> documentDictionary = document.ToDictionary();
+                    List<DocumentReference> cvikyRefs = new List<DocumentReference>();
+                    cvikyRefs = (List<DocumentReference>)documentDictionary["cviky"];
+                    List<int> cviky = new List<int>();
+                    for (int i = 0; i < cvikyRefs.Count - 1; i++)
+                    {
+                        cviky.Add(Int32.Parse(cvikyRefs[i].Id));
+                    }
+                    Trenink t = new Trenink(Int32.Parse(document.Id), (int)documentDictionary["trener_id"], documentDictionary["nazev"].ToString(), cviky);
+                    Console.WriteLine(t.ToString());
+                    return t;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return null;
         }
 
         public async Task<bool> Insert(Trenink value)
@@ -30,7 +52,7 @@ namespace DataLayer
                 { "trener_id", value.TrenerId },
             };
             List<DocumentReference> cviky = new List<DocumentReference>();
-            foreach(int i in value.Cviky)
+            foreach (int i in value.Cviky)
             {
                 cviky.Add(database.Collection("cviky").Document(i.ToString()));
             }
