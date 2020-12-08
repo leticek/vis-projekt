@@ -10,12 +10,20 @@ using System.Windows.Forms;
 
 namespace DesktopApplication
 {
-    public partial class Form1 : Form
+    public partial class NovyPlanSelect : Form
     {
-        public Form1()
+        public NovyPlanSelect()
         {
             InitializeComponent();
+     
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new NovyPlanNameSelect().Show();
+            this.Close();
+        }
+
+     
     }
 }

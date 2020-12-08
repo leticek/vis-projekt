@@ -119,6 +119,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\FirestoreIgnore.cs" />
     <Compile Include="Cvik.cs" />
     <Compile Include="Enums\CilPlanuEnum.cs" />
     <Compile Include="Klient.cs" />

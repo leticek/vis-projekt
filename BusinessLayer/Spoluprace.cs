@@ -17,7 +17,8 @@ namespace BusinessLayer
         }
 
         public int SpolupraceId { get; set; }
-        public int TrenerId { get; set; }
+        private int TrenerId { get; set; }
+        public Trener Trener { get; set; }
         public DateTime Platnost { get; set; }
         public decimal Cena { get; set; }
 

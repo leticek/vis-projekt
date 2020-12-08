@@ -20,7 +20,6 @@ namespace BusinessLayer
             this.Obtiznost = obtiznost;
             this.CilPlanu = cilPlanu;
             this.Poznamka = poznamka;
-            this.Treninky = treninky;
         }
 
         public TreninkovyPlan()
@@ -44,6 +43,7 @@ namespace BusinessLayer
         public string Poznamka { get; set; }
         [FirestoreProperty]
         public List<int> Treninky { get; set; }
+        //public List<Trenink> Treninky { get; set; }
 
     }
 }

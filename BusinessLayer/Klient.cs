@@ -21,7 +21,8 @@ namespace BusinessLayer
         }
 
 
-        public int TrenerId { get; set; }
+        private int TrenerId { get; set; }
+        public Trener Trener { get; set; }
         public int SpolupraceId { get; set; }
 
 
