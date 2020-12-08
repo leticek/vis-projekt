@@ -15,8 +15,43 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            {/* 
-                List<Cvik> list = new List<Cvik>
+            //generateData();
+
+
+            FirestoreDataMapper<TreninkovyPlan> firestoreDataMapper = new FirestoreDataMapper<TreninkovyPlan>();
+            TreninkovyPlan treninkovyPlan = new TreninkovyPlan(1, 1,
+                                            "Pro Růženu", DateTime.Now.ToUniversalTime(), ObtiznostTreninkovehoPlanu.EXPERT,
+                                            CilPlanu.ZVYSENI_SILY, "Nasypeme to Růžo", new List<int> { 1, 2, 3 });
+
+            _ = firestoreDataMapper.Insert(treninkovyPlan);
+
+            Console.ReadKey();
+        }
+
+
+
+        static void generateData()
+        {
+            List<Trenink> treninky = new List<Trenink>
+            {
+                new Trenink(1, 1, "Trenink A", new List<int> { 13, 24, 27, 29 }),
+                new Trenink(2, 1, "Trenink B", new List<int> { 7, 10, 18, 22 }),
+                new Trenink(3, 1, "Trenink C", new List<int> { 5, 9, 10, 25 }),
+                new Trenink(4, 2, "Trenink A", new List<int> { 3, 4, 13, 18 }),
+                new Trenink(5, 2, "Trenink B", new List<int> { 3, 12, 19, 28 }),
+                new Trenink(6, 2, "Trenink C", new List<int> { 1, 2, 7, 25 }),
+                new Trenink(7, 3, "Trenink A", new List<int> { 7, 15, 24, 28 }),
+                new Trenink(8, 3, "Trenink B", new List<int> { 13, 15, 19, 22 }),
+                new Trenink(9, 3, "Trenink C", new List<int> { 14, 19, 26, 28 }),
+                new Trenink(10, 4, "Trenink A", new List<int> { 3, 12, 14, 22 }),
+                new Trenink(11, 4, "Trenink B", new List<int> { 10, 16, 22, 29 }),
+                new Trenink(12, 4, "Trenink C", new List<int> { 3, 6, 14, 21 }),
+                new Trenink(13, 5, "Trenink A", new List<int> { 2, 8, 17, 23 }),
+                new Trenink(14, 5, "Trenink B", new List<int> { 8, 15, 16, 20 }),
+                new Trenink(15, 6, "Trenink C", new List<int> { 5, 20, 29, 30 }),
+
+        };
+            List<Cvik> cviky = new List<Cvik>
             {
                 new Cvik(1, "Dřep", 5, 5, "Až dolů."),
                 new Cvik(2, "Přítahy velké činky podhmatem", 8, 4, "Pauzy mezi sériemi 1,5min, nedávat důraz na negativní fáze"),
@@ -49,22 +84,21 @@ namespace ConsoleApp1
                 new Cvik(29, "Zakopávání", 10, 3, "Pauzy mezi sériemi 2min, bez negativní fáze"),
         };
 
-                CvikDataMapper cd = new CvikDataMapper();
+            FirestoreDataMapper<Trenink> treninkMapper = new FirestoreDataMapper<Trenink>();
+            FirestoreDataMapper<Cvik> cvikMapper = new FirestoreDataMapper<Cvik>();
 
+            foreach (Trenink t in treninky)
+            {
+                _ = treninkMapper.Insert(t);
+            }
 
-
-                foreach (Cvik c in list)
-                {
-                    _ = cd.Insert(c);
-                    Console.WriteLine(c.ToString());
-                    //Thread.Sleep(1000);
-                }
-           */
+            foreach (Cvik c in cviky)
+            {
+                _ = cvikMapper.Insert(c);
             }
 
 
 
-            Console.ReadKey();
         }
     }
 }

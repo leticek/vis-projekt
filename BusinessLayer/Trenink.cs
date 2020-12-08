@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Cloud.Firestore;
+
 
 namespace BusinessLayer
 {
+    [FirestoreData]
     public class Trenink
     {
         public Trenink(int id, int trenerId, string nazev, List<int> cviky)
@@ -16,9 +19,18 @@ namespace BusinessLayer
             this.Cviky = cviky;
         }
 
+        public Trenink()
+        {
+
+        }
+
+        [FirestoreProperty]
         public int Id { get; set; }
+        [FirestoreProperty]
         public int TrenerId { get; set; }
+        [FirestoreProperty]
         public string Nazev { get; set; }
+        [FirestoreProperty]
         public List<int> Cviky { get; set; }
 
         public override string ToString()
