@@ -10,9 +10,19 @@ namespace DesktopApplication
 {
     public partial class NovyPlanNameSelect : Form
     {
-        public NovyPlanNameSelect()
+        private Form previousForm;
+
+        public NovyPlanNameSelect(Form previous)
         {
             InitializeComponent();
+            this.previousForm = previous;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            previousForm.Show();
+                
         }
     }
 }

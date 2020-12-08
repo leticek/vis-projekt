@@ -1,4 +1,4 @@
-﻿using BusinessLayer;
+﻿using DTO.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class SpolupraceDataMapper : ISQLDataMapper<Spoluprace>
+    public class SpolupraceDataMapper : ISQLDataMapper<SpolupraceDTO>
     {
         private readonly string connectionString = "server=dbsys.cs.vsb.cz\\STUDENT;database=smi0114;user=smi0114;password=rMLsTuYdah;";
         public bool Delete(int id)
@@ -33,7 +33,7 @@ namespace DataLayer
             }
             return false;
         }
-        public Spoluprace GetById(int id)
+        public SpolupraceDTO GetById(int id)
         {
             string queryText = "SELECT * FROM Spoluprace WHERE spoluprace_id = @spoluprace_id";
             try
@@ -48,7 +48,7 @@ namespace DataLayer
                     SqlDataReader reader = sqlCommand.ExecuteReader();
                     if (reader.Read())
                     {
-                        return new Spoluprace(
+                        return new SpolupraceDTO(
                             reader.GetInt32(reader.GetOrdinal("spoluprace_id")),
                             reader.GetInt32(reader.GetOrdinal("trener_id")),
                             reader.GetDateTime(reader.GetOrdinal("platnost")),
@@ -64,7 +64,7 @@ namespace DataLayer
             }
         }
 
-        public bool Insert(Spoluprace value)
+        public bool Insert(SpolupraceDTO value)
         {
             string queryText = "INSERT INTO Spoluprace(spoluprace_id, cena, platnost, trener_id) VALUES(@spoluprace_id, @cena, @platnost, @trener_id)";
             try
@@ -95,7 +95,7 @@ namespace DataLayer
             return false;
         }
 
-        public bool Update(Spoluprace value)
+        public bool Update(SpolupraceDTO value)
         {
             string queryText = "UPDATE Spoluprace SET spoluprace_id = @spoluprace_id, cena = @cena, platnost = @platnost, trener_id = @trener_id WHERE spoluprace_id = @spoluprace_id";
             try

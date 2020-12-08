@@ -1,14 +1,14 @@
-﻿using BusinessLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.DTOs;
 
 namespace DataLayer
 {
-    public class KlientDataMapper : ISQLDataMapper<Klient>
+    public class KlientDataMapper : ISQLDataMapper<KlientDTO>
     {
         private readonly string connectionString = "server=dbsys.cs.vsb.cz\\STUDENT;database=smi0114;user=smi0114;password=rMLsTuYdah;";
         public bool Delete(int id)
@@ -27,7 +27,7 @@ namespace DataLayer
             return false;
         }
 
-        public Klient GetById(int id)
+        public KlientDTO GetById(int id)
         {
             string queryText = "SELECT * FROM Klient WHERE klient_id = @klient_id";
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -40,7 +40,7 @@ namespace DataLayer
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Klient(
+                    return new KlientDTO(
                         reader.GetInt32(reader.GetOrdinal("klient_id")),
                         reader.GetString(reader.GetOrdinal("jmeno")),
                         reader.GetString(reader.GetOrdinal("prijmeni")),
@@ -55,7 +55,7 @@ namespace DataLayer
 
         }
 
-        public bool Insert(Klient value)
+        public bool Insert(KlientDTO value)
         {
             string queryText = "INSERT INTO Klient(klient_id, jmeno, prijmeni, datum_narozeni, email, telefon, trener_id, spoluprace_id) VALUES(@klient_id, @jmeno, @prijmeni, @datum_narozeni, @email, @telefon, @trener_id, @spoluprace_id)";
 
@@ -78,7 +78,7 @@ namespace DataLayer
             return false;
         }
 
-        public bool Update(Klient value)
+        public bool Update(KlientDTO value)
         {
             string queryText = "UPDATE Klient SET klient_id = @klient_id, jmeno = @jmeno, prijmeni = @prijmeni, datum_narozeni = @datum_narozeni, email = @email, telefon = @telefon, trener_id = @trener_id, spoluprace_id = @spoluprace_id" +
                 " WHERE klient_id = @klient_id";

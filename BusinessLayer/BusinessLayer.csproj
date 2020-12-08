@@ -120,15 +120,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\FirestoreIgnore.cs" />
-    <Compile Include="Cvik.cs" />
+    <Compile Include="Models\CvikModel.cs" />
     <Compile Include="Enums\CilPlanuEnum.cs" />
-    <Compile Include="Klient.cs" />
+    <Compile Include="Models\KlientModel.cs" />
     <Compile Include="Enums\ObtiznostTreninkovehoPlanuEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spoluprace.cs" />
-    <Compile Include="Trener.cs" />
-    <Compile Include="Trenink.cs" />
-    <Compile Include="TreninkovyPlan.cs" />
+    <Compile Include="Models\SpolupraceModel.cs" />
+    <Compile Include="Models\TrenerModel.cs" />
+    <Compile Include="Models\TreninkModel.cs" />
+    <Compile Include="Models\TreninkovyPlanModel.cs" />
     <Compile Include="Uzivatel.cs" />
   </ItemGroup>
   <ItemGroup>

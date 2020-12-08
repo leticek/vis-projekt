@@ -12,18 +12,34 @@ namespace DesktopApplication
 {
     public partial class NovyPlanSelect : Form
     {
+        private Form actualForm;
+        private Form novyPlanNameInput;
+        private Form novyPlanSablona;
+
+
+
         public NovyPlanSelect()
         {
             InitializeComponent();
-     
+            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new NovyPlanNameSelect().Show();
-            this.Close();
+            if (novyPlanNameInput == null)
+                novyPlanNameInput = new NovyPlanNameSelect(this);
+            Hide();
+            novyPlanNameInput.Show();
         }
 
-     
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (novyPlanSablona == null)
+                novyPlanSablona = new NovyPlanSablonaSelect(this);
+            Hide();
+            novyPlanSablona.Show();
+
+        }
     }
 }

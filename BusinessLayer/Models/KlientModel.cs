@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
-    public class Klient : Uzivatel
+    public class KlientModel : Uzivatel
     {
-        public Klient(int id, string jmeno, string prijmeni, DateTime datumNarozeni, string email, string telefon, int trenerId, int spolupraceId)
+        public KlientModel(int id, string jmeno, string prijmeni, DateTime datumNarozeni, string email, string telefon, int trenerId, int spolupraceId)
         {
             this.Id = id;
             this.Jmeno = jmeno;
@@ -21,8 +21,8 @@ namespace BusinessLayer
         }
 
 
-        private int TrenerId { get; set; }
-        public Trener Trener { get; set; }
+        public int TrenerId { get; set; }
+        public TrenerModel Trener { get; set; }
         public int SpolupraceId { get; set; }
 
 

@@ -1,4 +1,5 @@
-﻿using BusinessLayer;
+﻿using DTO;
+using DTO.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer
 {
-    public class TrenerDataMapper : ISQLDataMapper<Trener>
+    public class TrenerDataMapper : ISQLDataMapper<TrenerDTO>
     {
         private readonly string connectionString = "server=dbsys.cs.vsb.cz\\STUDENT;database=smi0114;user=smi0114;password=rMLsTuYdah;";
         public bool Delete(int id)
@@ -27,7 +28,7 @@ namespace DataLayer
             return false;
         }
 
-        public Trener GetById(int id)
+        public TrenerDTO GetById(int id)
         {
             string queryText = "SELECT * FROM Trener WHERE trener_id = @trener_id";
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -40,7 +41,7 @@ namespace DataLayer
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 if (reader.Read())
                 {
-                    return new Trener(
+                    return new TrenerDTO(
                         reader.GetInt32(reader.GetOrdinal("trener_id")),
                         reader.GetString(reader.GetOrdinal("jmeno")),
                         reader.GetString(reader.GetOrdinal("prijmeni")),
@@ -53,7 +54,7 @@ namespace DataLayer
             }
         }
 
-        public bool Insert(Trener value)
+        public bool Insert(TrenerDTO value)
         {
             string queryText = "INSERT INTO Trener(trener_id, jmeno, prijmeni, datum_narozeni, email, telefon, specializace) VALUES(@trener_id, @jmeno, @prijmeni, @datum_narozeni, @email, @telefon, @specializace)";
 
@@ -80,7 +81,7 @@ namespace DataLayer
             return false;
         }
 
-        public bool Update(Trener value)
+        public bool Update(TrenerDTO value)
         {
             string queryText = "UPDATE Trener SET trener_id = @trener_id, jmeno = @jmeno, prijmeni = @prijmeni, datum_narozeni = @datum_narozeni, email = @email, telefon = @telefon, specializace = @specializace" +
                 " WHERE trener_id = @trener_id";

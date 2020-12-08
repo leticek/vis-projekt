@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer
+namespace DTO.DTOs
 {
-    public class Spoluprace
+    public class SpolupraceDTO
     {
-        public Spoluprace(int spolupraceId, int trenerId, DateTime platnost, decimal cena)
+        public SpolupraceDTO(int spolupraceId, int trenerId, DateTime platnost, decimal cena)
         {
             this.SpolupraceId = spolupraceId;
             this.TrenerId = trenerId;
@@ -17,14 +17,8 @@ namespace BusinessLayer
         }
 
         public int SpolupraceId { get; set; }
-        private int TrenerId { get; set; }
-        public Trener Trener { get; set; }
+        public int TrenerId { get; set; }
         public DateTime Platnost { get; set; }
         public decimal Cena { get; set; }
-
-        public override string ToString()
-        {
-            return $"ID: {this.SpolupraceId} TrenerID: {this.TrenerId} Platnost: {this.Platnost} Cena: {this.Cena}";
-        }
     }
 }

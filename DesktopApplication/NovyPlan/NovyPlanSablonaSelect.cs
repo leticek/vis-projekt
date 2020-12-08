@@ -10,9 +10,17 @@ namespace DesktopApplication
 {
     public partial class NovyPlanSablonaSelect : Form
     {
-        public NovyPlanSablonaSelect()
+        private Form previousForm;
+        public NovyPlanSablonaSelect(Form previous)
         {
             InitializeComponent();
+            this.previousForm = previous;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Hide();
+            previousForm.Show();
         }
     }
 }

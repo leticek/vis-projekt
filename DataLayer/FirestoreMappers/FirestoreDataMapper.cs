@@ -49,6 +49,29 @@ namespace DataLayer
             }
         }
 
+        public async Task<List<T>> GetByParameter(string parameter, object value)
+        {
+            try
+            {
+                QuerySnapshot query = await database.Collection(typeof(T).Name).WhereEqualTo(parameter, value).GetSnapshotAsync();
+                List<T> result = new List<T>();
+                foreach (DocumentSnapshot documentSnapshot in query.Documents)
+                {
+                    result.Add(documentSnapshot.ConvertTo<T>());
+                }
+                foreach(T o in result)
+                {
+                    Console.WriteLine(o.ToString());
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return default;
+            }
+        }
+
         public async Task<bool> Insert(T value)
         {
             try

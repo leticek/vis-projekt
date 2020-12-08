@@ -8,12 +8,12 @@ using Google.Cloud.Firestore;
 namespace BusinessLayer
 {
     [FirestoreData]
-    public class Cvik
+    public class CvikModel
     {
 
-        public Cvik() { }
+        public CvikModel() { }
 
-        public Cvik(int id, string nazev, int pocetOpakovani, int pocetSerii, string poznamka)
+        public CvikModel(int id, string nazev, int pocetOpakovani, int pocetSerii, string poznamka)
         {
             this.Id = id;
             this.Nazev = nazev;

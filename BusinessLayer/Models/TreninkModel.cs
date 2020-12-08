@@ -9,9 +9,9 @@ using Google.Cloud.Firestore;
 namespace BusinessLayer
 {
     [FirestoreData]
-    public class Trenink
+    public class TreninkModel
     {
-        public Trenink(int id, int trenerId, string nazev, List<int> cviky)
+        public TreninkModel(int id, int trenerId, string nazev, List<int> cviky)
         {
             this.Id = id;
             this.TrenerId = trenerId;
@@ -19,7 +19,7 @@ namespace BusinessLayer
             this.Cviky = cviky;
         }
 
-        public Trenink()
+        public TreninkModel()
         {
 
         }
