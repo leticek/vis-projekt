@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using DTO;
+using DataLayer;
+using DTO.DTOs;
 
 namespace BusinessLayer
 {
     public class TrenerModel : Uzivatel
     {
+        public TrenerModel()
+        {
+
+        }
         public TrenerModel(int id, string jmeno, string prijmeni, DateTime datumNarozeni, string email, string telefon, string specializace)
         {
             this.Id = id;
@@ -18,19 +24,35 @@ namespace BusinessLayer
             this.Email = email;
             this.Telefon = telefon;
             this.Specializace = specializace;
+            loadTrenink();
+
+        }
+        public TrenerModel(TrenerDTO trenerDTO)
+        {
+            this.Id = trenerDTO.Id;
+            this.Jmeno = trenerDTO.Jmeno;
+            this.Prijmeni = trenerDTO.Prijmeni;
+            this.DatumNarozeni = trenerDTO.DatumNarozeni;
+            this.Email = trenerDTO.Email;
+            this.Telefon = trenerDTO.Telefon;
+            this.Specializace = trenerDTO.Specializace;
+            loadTrenink();
 
         }
         public string Specializace { get; set; }
         public List<TreninkModel> Treninky;
 
-        private void loadTrenink()
+        private async void loadTrenink()
         {
-            
+
+            FirestoreDataMapper<TreninkDTO> firestoreDataMapper = new FirestoreDataMapper<TreninkDTO>();
+            List<TreninkDTO> result = await firestoreDataMapper.GetByParameter("TrenerId", Id);
+            Treninky = result.Select(x => new TreninkModel(x)).ToList();
         }
 
-        public override string ToString()
-        {
-            return $"ID: {this.Id} Jmeno: {this.Jmeno} Prijmeni: {this.Prijmeni} DatumNarozeni: {this.DatumNarozeni} Email: {this.Id} Telefon: {this.Telefon}  Specializace: {this.Specializace}";
-        }
+        public TrenerDTO toDTO() => new TrenerDTO(Id, Jmeno, Prijmeni, DatumNarozeni, Email, Telefon, Specializace);
+
+        public override string ToString() => $"ID: {this.Id} Jmeno: {this.Jmeno} Prijmeni: {this.Prijmeni} DatumNarozeni: {this.DatumNarozeni} Email: {this.Id} Telefon: {this.Telefon}  Specializace: {this.Specializace}";
+      
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO.DTOs;
 using Google.Cloud.Firestore;
 
 
@@ -17,6 +18,14 @@ namespace BusinessLayer
             this.TrenerId = trenerId;
             this.Nazev = nazev;
             this.Cviky = cviky;
+        }
+
+        public TreninkModel(TreninkDTO treninkDTO)
+        {
+            this.Id = treninkDTO.Id;
+            this.TrenerId = treninkDTO.TrenerId;
+            this.Nazev = treninkDTO.Nazev;
+            this.Cviky = treninkDTO.Cviky;
         }
 
         public TreninkModel()

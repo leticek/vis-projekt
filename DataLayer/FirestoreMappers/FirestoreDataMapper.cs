@@ -17,7 +17,7 @@ namespace DataLayer
         {
             try
             {
-                QuerySnapshot query = await database.Collection(typeof(T).Name).WhereEqualTo("Id", id).GetSnapshotAsync();
+                QuerySnapshot query = await database.Collection(typeof(T).Name.Substring(0, typeof(T).Name.Length - 3)).WhereEqualTo("Id", id).GetSnapshotAsync();
                 foreach (DocumentSnapshot documentSnapshot in query.Documents)
                 {
                     await documentSnapshot.Reference.DeleteAsync();
@@ -35,7 +35,7 @@ namespace DataLayer
         {
             try
             {
-                QuerySnapshot query = await database.Collection(typeof(T).Name).WhereEqualTo("Id", id).GetSnapshotAsync();
+                QuerySnapshot query = await database.Collection(typeof(T).Name.Substring(0, typeof(T).Name.Length - 3)).WhereEqualTo("Id", id).GetSnapshotAsync();
                 foreach (DocumentSnapshot documentSnapshot in query.Documents)
                 {
                     return documentSnapshot.ConvertTo<T>();
@@ -53,15 +53,11 @@ namespace DataLayer
         {
             try
             {
-                QuerySnapshot query = await database.Collection(typeof(T).Name).WhereEqualTo(parameter, value).GetSnapshotAsync();
+                QuerySnapshot query = await database.Collection(typeof(T).Name.Substring(0, typeof(T).Name.Length - 3)).WhereEqualTo(parameter, value).GetSnapshotAsync();
                 List<T> result = new List<T>();
                 foreach (DocumentSnapshot documentSnapshot in query.Documents)
                 {
                     result.Add(documentSnapshot.ConvertTo<T>());
-                }
-                foreach(T o in result)
-                {
-                    Console.WriteLine(o.ToString());
                 }
                 return result;
             }
@@ -76,8 +72,8 @@ namespace DataLayer
         {
             try
             {
-                CollectionReference cvikyCollectionReference = database.Collection(typeof(T).Name);
-                DocumentReference result = await cvikyCollectionReference.AddAsync(value);
+                CollectionReference cvikyCollectionReference = database.Collection(typeof(T).Name.Substring(0, typeof(T).Name.Length - 3));
+                DocumentReference result = await cvikyCollectionReference. AddAsync(value);
                 if (result.GetSnapshotAsync().Result.Exists)
                     return true;
                 else
@@ -104,7 +100,7 @@ namespace DataLayer
                     updates.Add(new FieldPath(propName), value.GetType().GetProperty(propName).GetValue(value, null));
                 }
 
-                QuerySnapshot query = await database.Collection(typeof(T).Name).WhereEqualTo("Id", value.GetType().GetProperty("Id").GetValue(value, null)).GetSnapshotAsync();
+                QuerySnapshot query = await database.Collection(typeof(T).Name.Substring(0, typeof(T).Name.Length - 3)).WhereEqualTo("Id", value.GetType().GetProperty("Id").GetValue(value, null)).GetSnapshotAsync();
                 foreach (DocumentSnapshot documentSnapshot in query.Documents)
                 {
                     await documentSnapshot.Reference.UpdateAsync(updates);

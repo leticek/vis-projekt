@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DTO;
 
 
 namespace ConsoleApp1
@@ -17,10 +18,15 @@ namespace ConsoleApp1
 
             //generateData();
 
+            TrenerModel t = new TrenerModel
+            {
+                Id = 5
+            };
 
-            FirestoreDataMapper<CvikModel> firestoreDataMapper = new FirestoreDataMapper<CvikModel>();
+            FirestoreDataMapper<TreninkModel> firestoreDataMapper = new FirestoreDataMapper<TreninkModel>();
 
-            _ = firestoreDataMapper.GetByParameter("PocetOpakovani", 15);
+            _ = firestoreDataMapper.GetById(5);
+         
 
 
             Console.ReadKey();

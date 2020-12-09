@@ -58,6 +58,10 @@
       <Project>{2b332d4a-576a-4907-97bf-76199965fbbb}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{768f7996-fd53-485e-bb90-4df4c3f96947}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

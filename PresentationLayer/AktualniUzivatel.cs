@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PresentationLayer
 {
-    public class PresentationLayer
+    public static class AktualniUzivatel<T>
     {
+        public static T Uzivatel { get; set; }
     }
 }

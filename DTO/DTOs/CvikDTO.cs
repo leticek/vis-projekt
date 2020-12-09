@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Cloud.Firestore;
 
 namespace DTO
 {
+    [FirestoreData]
     public class CvikDTO
     {
         public CvikDTO() { }
@@ -18,11 +20,15 @@ namespace DTO
             this.PocetSerii = pocetSerii;
             this.Poznamka = poznamka;
         }
-
+        [FirestoreProperty]
         public int Id { get; set; }
+        [FirestoreProperty]
         public string Nazev { get; set; }
+        [FirestoreProperty]
         public int PocetOpakovani { get; set; }
+        [FirestoreProperty]
         public int PocetSerii { get; set; }
+        [FirestoreProperty]
         public string Poznamka { get; set; }
     }
 }
