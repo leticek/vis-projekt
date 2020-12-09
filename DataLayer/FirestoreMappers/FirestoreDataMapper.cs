@@ -26,8 +26,7 @@ namespace DataLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return false;
+                throw e;
             }
         }
 
@@ -44,8 +43,7 @@ namespace DataLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return default;
+                throw e;
             }
         }
 
@@ -63,8 +61,7 @@ namespace DataLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return default;
+                throw e;
             }
         }
 
@@ -81,8 +78,7 @@ namespace DataLayer
             }
             catch(Exception e)
             {
-                Console.WriteLine(e);
-                return false;
+                throw e;
             }
         }
 
@@ -109,8 +105,7 @@ namespace DataLayer
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                return false;
+                throw e;
             }
         }
     }

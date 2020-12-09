@@ -38,8 +38,11 @@ namespace DesktopApplication
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.trvaniLabel = new System.Windows.Forms.Label();
+            this.obtiznostLabel = new System.Windows.Forms.Label();
+            this.cilLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +58,7 @@ namespace DesktopApplication
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(146, 314);
+            this.dataGridView1.Size = new System.Drawing.Size(146, 281);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
@@ -96,7 +99,7 @@ namespace DesktopApplication
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(146, 314);
+            this.dataGridView2.Size = new System.Drawing.Size(146, 281);
             this.dataGridView2.TabIndex = 3;
             this.dataGridView2.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_CellMouseClick);
             // 
@@ -136,16 +139,6 @@ namespace DesktopApplication
             this.label5.TabIndex = 6;
             this.label5.Text = "Cíl plánu:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 15.75F);
-            this.label6.Location = new System.Drawing.Point(389, 129);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 30);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Poznámky:";
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(523, 306);
@@ -154,14 +147,55 @@ namespace DesktopApplication
             this.button2.TabIndex = 8;
             this.button2.Text = "Uložit nový plán";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // trvaniLabel
+            // 
+            this.trvaniLabel.AutoSize = true;
+            this.trvaniLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trvaniLabel.Location = new System.Drawing.Point(518, 56);
+            this.trvaniLabel.Name = "trvaniLabel";
+            this.trvaniLabel.Size = new System.Drawing.Size(0, 25);
+            this.trvaniLabel.TabIndex = 9;
+            // 
+            // obtiznostLabel
+            // 
+            this.obtiznostLabel.AutoSize = true;
+            this.obtiznostLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.obtiznostLabel.Location = new System.Drawing.Point(503, 82);
+            this.obtiznostLabel.Name = "obtiznostLabel";
+            this.obtiznostLabel.Size = new System.Drawing.Size(0, 25);
+            this.obtiznostLabel.TabIndex = 10;
+            // 
+            // cilLabel
+            // 
+            this.cilLabel.AutoSize = true;
+            this.cilLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cilLabel.Location = new System.Drawing.Point(488, 108);
+            this.cilLabel.Name = "cilLabel";
+            this.cilLabel.Size = new System.Drawing.Size(0, 25);
+            this.cilLabel.TabIndex = 11;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 357);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Zpět";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // NovyPlanAddTrenink
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.cilLabel);
+            this.Controls.Add(this.obtiznostLabel);
+            this.Controls.Add(this.trvaniLabel);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -190,7 +224,10 @@ namespace DesktopApplication
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label trvaniLabel;
+        private System.Windows.Forms.Label obtiznostLabel;
+        private System.Windows.Forms.Label cilLabel;
+        private System.Windows.Forms.Button button1;
     }
 }

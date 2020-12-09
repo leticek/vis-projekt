@@ -13,6 +13,8 @@ namespace PresentationLayer
         static public string NovyTreninkName { get; set; }
 
         private static TreninkovyPlanModel TreninkovyPlanModel = new TreninkovyPlanModel();
+        private static string[] obtiznostPlanuValues = { "Začátečník", "Středně pokročilý", "Pokročilý", "Expert" };
+        private static string[] cilPlanuValues = { "Redukce tuku", "Tvarování postavy", "Zvýšení síly", "Zlepšení kondice" };
 
         public static bool checkName(string name)
         {
@@ -24,13 +26,37 @@ namespace PresentationLayer
             return true;
         }
 
-        public static void populateAddTrenink(DataGridView dataGridView1)
+        public static void populateAddTrenink(DataGridView dataGridView1, Label cilLabel, Label trvaniLabel, Label obtiznostLabel)
         {
-            foreach(TreninkModel treninkModel in AktualniUzivatel<TrenerModel>.Uzivatel.Treninky)
+            foreach (TreninkModel treninkModel in AktualniUzivatel<TrenerModel>.Uzivatel.Treninky)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.RowTemplate.Clone();
                 row.CreateCells(dataGridView1, treninkModel.Nazev);
                 dataGridView1.Rows.Add(row);
+            }
+            cilLabel.Text = cilPlanuValues[(int)TreninkovyPlanModel.CilPlanu];
+            obtiznostLabel.Text = obtiznostPlanuValues[(int)TreninkovyPlanModel.Obtiznost];
+            trvaniLabel.Text = TreninkovyPlanModel.PlatnyDo.ToShortDateString();
+        }
+
+        public static async Task<bool> saveTrenink(DataGridView dataGridView2, string note)
+        {
+            if (dataGridView2.Rows.Count >= 3)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    TreninkModel treninkModel = new TreninkModel();
+                    treninkModel = await treninkModel.loadFromFirestore((string)row.Cells[0].Value, AktualniUzivatel<TrenerModel>.Uzivatel.Id);
+                    TreninkovyPlanModel.TreninkModels.Add(treninkModel);
+                }
+                TreninkovyPlanModel.Id = new Random().Next();
+                TreninkovyPlanModel.Poznamka = note;
+                TreninkovyPlanModel.Save();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -45,15 +71,13 @@ namespace PresentationLayer
 
         public static void setObtiznost(ComboBox comboBox)
         {
-            string[] values = { "Začátečník", "Středně pokročilý", "Pokročilý", "Expert" };
-            comboBox.Items.AddRange(values);
+            comboBox.Items.AddRange(obtiznostPlanuValues);
             comboBox.SelectedIndex = 0;
         }
 
         public static void setCilPlanu(ComboBox comboBox)
         {
-            string[] values = { "Redukce tuku", "Tvarování postavy", "Zvýšení síly", "Zlepšení kondice" };
-            comboBox.Items.AddRange(values);
+            comboBox.Items.AddRange(cilPlanuValues);
             comboBox.SelectedIndex = 0;
         }
 
@@ -62,6 +86,7 @@ namespace PresentationLayer
             TreninkovyPlanModel.Obtiznost = (ObtiznostTreninkovehoPlanu)obtiznostPlanu;
             TreninkovyPlanModel.CilPlanu = (CilPlanu)cilPlanu;
             TreninkovyPlanModel.PlatnyDo = pickedDate;
+            TreninkovyPlanModel.Poznamka = note;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer;
 using DTO.DTOs;
 using Google.Cloud.Firestore;
 
@@ -45,6 +46,18 @@ namespace BusinessLayer
         public override string ToString()
         {
             return $"ID: {this.Id} TrenerId: {this.TrenerId} Nazev: {this.Nazev} Cviky: {this.Cviky}";
+        }
+
+        public async Task<TreninkModel> loadFromFirestore(string name, int trenerId)
+        {
+            FirestoreDataMapper<TreninkDTO> firestoreDataMapper = new FirestoreDataMapper<TreninkDTO>();
+            List<TreninkDTO> fsResult = await firestoreDataMapper.GetByParameter("TrenerId", trenerId);
+            fsResult = fsResult.Where(x => x.Nazev == name).ToList();
+            Id = fsResult[0].Id;
+            TrenerId = fsResult[0].TrenerId;
+            Nazev = fsResult[0].Nazev;
+            Cviky = fsResult[0].Cviky;
+            return this;
         }
     }
 }
