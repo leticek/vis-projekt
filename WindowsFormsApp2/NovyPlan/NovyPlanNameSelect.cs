@@ -11,8 +11,8 @@ namespace DesktopApplication
 {
     public partial class NovyPlanNameSelect : Form
     {
-        private Form previousForm;
-        private Form nextForm;
+        public Form previousForm;
+        public Form nextForm;
 
         public NovyPlanNameSelect(Form previous)
         {

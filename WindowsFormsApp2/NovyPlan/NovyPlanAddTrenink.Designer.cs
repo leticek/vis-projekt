@@ -147,7 +147,7 @@ namespace DesktopApplication
             this.button2.TabIndex = 8;
             this.button2.Text = "Uložit nový plán";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.ulozit_Click);
             // 
             // trvaniLabel
             // 
@@ -184,7 +184,7 @@ namespace DesktopApplication
             this.button1.TabIndex = 12;
             this.button1.Text = "Zpět";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Zpet_Click);
             // 
             // NovyPlanAddTrenink
             // 

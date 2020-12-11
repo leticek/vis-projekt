@@ -41,5 +41,10 @@ namespace DTO.DTOs
         public string Poznamka { get; set; }
         [FirestoreProperty]
         public List<int> Treninky { get; set; } = new List<int>();
+
+        public static implicit operator List<object>(TreninkovyPlanDTO v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

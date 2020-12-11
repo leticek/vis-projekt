@@ -12,8 +12,8 @@ namespace DesktopApplication
     public partial class NovyPlanKonfigurace : Form
     {
 
-        private Form previousForm;
-        private Form nextForm;
+        public Form previousForm;
+        public Form nextForm;
         public NovyPlanKonfigurace(Form previous)
         {
             InitializeComponent();
@@ -42,17 +42,18 @@ namespace DesktopApplication
             }
         }
 
-
-
         private void NovyPlanKonfigurace_Load(object sender, EventArgs e)
         {
-            NovyTreninkController.setObtiznost(obtiznostCB);
-            NovyTreninkController.setCilPlanu(cilCB);
-        }
+            if (previousForm.GetType() == typeof(NovyPlanNameSelect) && NovyTreninkController.ZkontrolujPocetTreninku())
+            {
+                NovyTreninkController.setObtiznost(obtiznostCB);
+                NovyTreninkController.setCilPlanu(cilCB);
+            }
+            else
+            {
+                NovyTreninkController.loadPlanConfiguration(obtiznostCB, cilCB, dateTimePicker1, textBox1);
+            }
 
-        private void NovyPlanKonfigurace_Shown(object sender, EventArgs e)
-        {
-            //TODO: implementovat načítání
         }
     }
 }

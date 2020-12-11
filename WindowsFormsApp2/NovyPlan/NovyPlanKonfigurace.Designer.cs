@@ -166,7 +166,6 @@ namespace DesktopApplication
             this.Name = "NovyPlanKonfigurace";
             this.Text = "NovyPlanKonfigurace";
             this.Load += new System.EventHandler(this.NovyPlanKonfigurace_Load);
-            this.Shown += new System.EventHandler(this.NovyPlanKonfigurace_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

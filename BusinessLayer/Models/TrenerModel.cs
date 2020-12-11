@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,6 @@ namespace BusinessLayer
         public TrenerDTO toDTO() => new TrenerDTO(Id, Jmeno, Prijmeni, DatumNarozeni, Email, Telefon, Specializace);
 
         public override string ToString() => $"ID: {this.Id} Jmeno: {this.Jmeno} Prijmeni: {this.Prijmeni} DatumNarozeni: {this.DatumNarozeni} Email: {this.Id} Telefon: {this.Telefon}  Specializace: {this.Specializace}";
-      
+
     }
 }

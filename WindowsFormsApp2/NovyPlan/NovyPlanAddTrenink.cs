@@ -12,7 +12,7 @@ namespace DesktopApplication
     public partial class NovyPlanAddTrenink : Form
     {
 
-        private Form previous; 
+        public Form previous; 
         public NovyPlanAddTrenink(Form previous)
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace DesktopApplication
 
         private void NovyPlanAddTrenink_Load(object sender, EventArgs e)
         {
-            NovyTreninkController.populateAddTrenink(dataGridView1, cilLabel, trvaniLabel, obtiznostLabel);
+                NovyTreninkController.populateAddTrenink(dataGridView1, dataGridView2, cilLabel, trvaniLabel, obtiznostLabel);
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -37,17 +37,18 @@ namespace DesktopApplication
             dataGridView1.Rows.Add(row);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Zpet_Click(object sender, EventArgs e)
         {
             Hide();
             previous.Show();
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void ulozit_Click(object sender, EventArgs e)
         {
             if(await NovyTreninkController.saveTrenink(dataGridView2))
             {
-                return;
+                MessageBox.Show("Trénink se uložil", "OK", MessageBoxButtons.OK);
+                System.Environment.Exit(0);
             }
             else
             {

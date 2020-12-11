@@ -8,9 +8,9 @@ namespace BusinessLayer
 {
     public enum CilPlanu
     {
-        REDUKCE_TUKU,
-        TVAROVANI_POSTAVY,
-        ZVYSENI_SILY,
-        KONDICE
+        REDUKCE_TUKU = 0,
+        TVAROVANI_POSTAVY = 1,
+        ZVYSENI_SILY = 2,
+        KONDICE = 3
     }
 }

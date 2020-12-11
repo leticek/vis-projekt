@@ -65,9 +65,9 @@ namespace DesktopApplication
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(611, 360);
+            this.button2.Location = new System.Drawing.Point(603, 360);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 20);
+            this.button2.Size = new System.Drawing.Size(71, 20);
             this.button2.TabIndex = 3;
             this.button2.Text = "Pokračovat";
             this.button2.UseVisualStyleBackColor = true;
