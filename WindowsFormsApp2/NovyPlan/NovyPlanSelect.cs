@@ -16,10 +16,11 @@ namespace DesktopApplication
     {
         private Form novyPlanNameInput;
         private Form novyPlanSablona;
-        public NovyPlanSelect()
+        private Form previousForm;
+        public NovyPlanSelect(Form previous)
         {
             InitializeComponent();
-            AktualniUzivatel<TrenerModel>.Uzivatel = new TrenerModel(1, "Uma", "Bowers", DateTime.Now.ToUniversalTime(), "email", "telefon", "Kulturistika");
+            previousForm = previous;
 
         }
         private void novyPlan_Select(object sender, EventArgs e)
@@ -40,6 +41,12 @@ namespace DesktopApplication
         private void NovyPlanSelect_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
+            previousForm.Show();
         }
     }
 }

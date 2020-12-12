@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer;
 using BusinessLayer;
+using WindowsFormsApp2;
 
 namespace DesktopApplication
 {
@@ -22,7 +23,7 @@ namespace DesktopApplication
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            Application.Run(new NovyPlanSelect());
+            Application.Run(new HlavniMenu());
         }
     }
 }

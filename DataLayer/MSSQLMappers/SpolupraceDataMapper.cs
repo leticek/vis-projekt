@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,5 +122,38 @@ namespace DataLayer
             }
             return false;
         }
+
+        public List<SpolupraceDTO> GetAll()
+        {
+            string queryText = "SELECT * FROM Spoluprace";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand sqlCommand = conn.CreateCommand();
+                    sqlCommand.CommandText = queryText;
+
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    List<SpolupraceDTO> result = new List<SpolupraceDTO>();
+                    while(reader.Read())
+                    {                         
+                        result.Add(new SpolupraceDTO(
+                            reader.GetInt32(reader.GetOrdinal("spoluprace_id")),
+                            reader.GetInt32(reader.GetOrdinal("trener_id")),
+                            reader.GetDateTime(reader.GetOrdinal("platnost")),
+                            (decimal)reader.GetSqlMoney(reader.GetOrdinal("cena"))));
+                        
+                    }
+                    return result;
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                return null;
+            }
+        }
+
     }
 }

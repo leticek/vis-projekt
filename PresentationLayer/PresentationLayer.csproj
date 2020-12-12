@@ -45,6 +45,7 @@
     <Compile Include="AktualniUzivatel.cs" />
     <Compile Include="NovyTreninkController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZadostiKlientuController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">

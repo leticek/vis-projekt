@@ -38,8 +38,8 @@ namespace DesktopApplication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F);
+            this.label1.Location = new System.Drawing.Point(10, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(364, 37);
             this.label1.TabIndex = 0;
@@ -47,9 +47,9 @@ namespace DesktopApplication
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(163, 173);
+            this.button1.Location = new System.Drawing.Point(140, 150);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(178, 85);
+            this.button1.Size = new System.Drawing.Size(153, 74);
             this.button1.TabIndex = 1;
             this.button1.Text = "Nový plán";
             this.button1.UseVisualStyleBackColor = true;
@@ -57,9 +57,9 @@ namespace DesktopApplication
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(441, 173);
+            this.button2.Location = new System.Drawing.Point(378, 150);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(178, 85);
+            this.button2.Size = new System.Drawing.Size(153, 74);
             this.button2.TabIndex = 2;
             this.button2.Text = "Použít šablonu";
             this.button2.UseVisualStyleBackColor = true;
@@ -67,18 +67,19 @@ namespace DesktopApplication
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 415);
+            this.button3.Location = new System.Drawing.Point(10, 360);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.Size = new System.Drawing.Size(64, 20);
             this.button3.TabIndex = 3;
             this.button3.Text = "Zpět";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // NovyPlanSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

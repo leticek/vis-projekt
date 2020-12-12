@@ -8,9 +8,9 @@ namespace BusinessLayer
 {
     public enum ObtiznostTreninkovehoPlanu
     {
-        ZACATECNIK,
-        STREDNE_POKROCILY,
-        POKROCILY,
-        EXPERT
+        ZACATECNIK = 0,
+        STREDNE_POKROCILY = 1,
+        POKROCILY = 2,
+        EXPERT = 3
     }
 }

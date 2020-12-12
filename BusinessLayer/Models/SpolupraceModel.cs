@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +17,21 @@ namespace BusinessLayer
             this.Cena = cena;
         }
 
+        public SpolupraceModel(SpolupraceDTO spolupraceDTO)
+        {
+            this.SpolupraceId = spolupraceDTO.SpolupraceId;
+            this.TrenerId = spolupraceDTO.TrenerId;
+            this.Platnost = spolupraceDTO.Platnost;
+            this.Cena = spolupraceDTO.Cena;
+        }
+
         public int SpolupraceId { get; set; }
         public int TrenerId { get; set; }
         public TrenerModel Trener { get; set; }
         public DateTime Platnost { get; set; }
         public decimal Cena { get; set; }
+
+        public SpolupraceDTO ToDTO() => new SpolupraceDTO(SpolupraceId, TrenerId, Platnost, Cena); 
 
         public override string ToString()
         {

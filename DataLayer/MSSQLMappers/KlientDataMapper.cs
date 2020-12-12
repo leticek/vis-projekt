@@ -55,6 +55,34 @@ namespace DataLayer
 
         }
 
+        public List<KlientDTO> GetAll()
+        {
+            string queryText = "SELECT * FROM Klient";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand sqlCommand = conn.CreateCommand();
+                sqlCommand.CommandText = queryText;
+                
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                List<KlientDTO> result = new List<KlientDTO>();
+                while (reader.Read())
+                {
+                    result.Add( new KlientDTO(
+                        reader.GetInt32(reader.GetOrdinal("klient_id")),
+                        reader.GetString(reader.GetOrdinal("jmeno")),
+                        reader.GetString(reader.GetOrdinal("prijmeni")),
+                        reader.GetDateTime(reader.GetOrdinal("datum_narozeni")),
+                        reader.GetString(reader.GetOrdinal("email")),
+                        reader.GetString(reader.GetOrdinal("telefon")),
+                        reader.GetInt32(reader.GetOrdinal("trener_id")),
+                    reader.GetInt32(reader.GetOrdinal("spoluprace_id"))));
+                }
+                return result;
+            }
+        }
+
         public bool Insert(KlientDTO value)
         {
             string queryText = "INSERT INTO Klient(klient_id, jmeno, prijmeni, datum_narozeni, email, telefon, trener_id, spoluprace_id) VALUES(@klient_id, @jmeno, @prijmeni, @datum_narozeni, @email, @telefon, @trener_id, @spoluprace_id)";
