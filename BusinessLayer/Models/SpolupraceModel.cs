@@ -1,4 +1,5 @@
-﻿using DTO.DTOs;
+﻿using DataLayer;
+using DTO.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,9 +34,23 @@ namespace BusinessLayer
 
         public SpolupraceDTO ToDTO() => new SpolupraceDTO(SpolupraceId, TrenerId, Platnost, Cena); 
 
+        public static void prodlouzitSpolupraci(int id)
+        {
+            SpolupraceDataMapper spolupraceDataMapper = new SpolupraceDataMapper();
+            SpolupraceDTO spolupraceDTO = spolupraceDataMapper.GetById(id);
+            spolupraceDTO.Platnost = spolupraceDTO.Platnost.AddDays(30);
+            spolupraceDataMapper.Update(spolupraceDTO);
+        }
+
         public override string ToString()
         {
             return $"ID: {this.SpolupraceId} TrenerID: {this.TrenerId} Platnost: {this.Platnost} Cena: {this.Cena}";
+        }
+
+        public static void DeleteById(int spolupraceId)
+        {
+            SpolupraceDataMapper spolupraceDataMapper = new SpolupraceDataMapper();
+            spolupraceDataMapper.Delete(spolupraceId);
         }
     }
 }

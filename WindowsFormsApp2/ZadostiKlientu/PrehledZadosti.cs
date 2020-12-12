@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsFormsApp2.ZadostiKlientu;
 
 namespace DesktopApplication
 {
@@ -38,7 +39,11 @@ namespace DesktopApplication
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if(!ZadostiKlientuController.HandleMouseClick(dataGridView1, e))
+            {
+                new VyriditZadost(dataGridView1, e).Show();
+                
+            }
         }
     }
 }

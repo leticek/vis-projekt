@@ -13,18 +13,25 @@ namespace DataLayer
         private readonly string connectionString = "server=dbsys.cs.vsb.cz\\STUDENT;database=smi0114;user=smi0114;password=rMLsTuYdah;";
         public bool Delete(int id)
         {
-            string queryText = "DELETE FROM Klient WHERE klient_id = @klient_id";
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                SqlCommand sqlCommand = conn.CreateCommand();
-                sqlCommand.CommandText = queryText;
-                sqlCommand.Parameters.AddWithValue("klient_id", id);
-                
-                int result = sqlCommand.ExecuteNonQuery();
-                if (result >= 1) return true;
+                string queryText = "DELETE FROM Klient WHERE klient_id = @klient_id";
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand sqlCommand = conn.CreateCommand();
+                    sqlCommand.CommandText = queryText;
+                    sqlCommand.Parameters.AddWithValue("klient_id", id);
+
+                    int result = sqlCommand.ExecuteNonQuery();
+                    if (result >= 1) return true;
+                }
+                return false;
             }
-            return false;
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public KlientDTO GetById(int id)

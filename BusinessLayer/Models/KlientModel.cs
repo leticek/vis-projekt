@@ -56,5 +56,11 @@ namespace BusinessLayer
             return $"ID: {this.Id} Jmeno: {this.Jmeno} Prijmeni: {this.Prijmeni} DatumNarozeni: {this.DatumNarozeni} Email: {this.Id} Telefon: {this.Telefon} TrenerId: {this.TrenerId}" +
                     $" TrenerId: {this.TrenerId} SpolupraceId: {this.SpolupraceId}";
         }
+
+        public static void DeleteById(int id)
+        {
+            KlientDataMapper klientDataMapper = new KlientDataMapper();
+            klientDataMapper.Delete(id);
+        }
     }
 }

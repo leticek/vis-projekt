@@ -45,11 +45,21 @@ namespace BusinessLayer.Models
             foreach(SpolupraceDTO spoluprace in spolupraceResult)
             {
                 List<ZadostDTO> tmp = await zadostMapper.GetByParameter("SpolupraceId", spoluprace.SpolupraceId);
-                ZadostDTO zadost = tmp[0];
-                zadostDTOs.Add(zadost);
+                if (tmp.Count > 0)
+                {
+                    ZadostDTO zadost = tmp[0];
+                    zadostDTOs.Add(zadost);
+                }
             }
             List<ZadostModel> result = zadostDTOs.Select(x => new ZadostModel(x)).ToList();
             return result;
+        }
+
+        public async static void DeleteById(ZadostModel zadost)
+        {
+            FirestoreDataMapper<ZadostDTO> firestoreDataMapper = new FirestoreDataMapper<ZadostDTO>();
+            SpolupraceDataMapper spolupraceDataMapper = new SpolupraceDataMapper();
+            await firestoreDataMapper.Delete(zadost.Id);
         }
 
     }
