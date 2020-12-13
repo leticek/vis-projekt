@@ -23,7 +23,7 @@ namespace BusinessLayer
             {
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                 client.Connect("smtp.seznam.cz", 465, true);
-                client.Authenticate("vis-fitness@seznam.cz", "P7638hkYp4ZUqG5");
+                client.Authenticate("vis-fitness@seznam.cz", "");
                 client.Send(message);
                 client.Disconnect(true);
             }
