@@ -39,10 +39,13 @@ namespace DesktopApplication
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(!ZadostiKlientuController.HandleMouseClick(dataGridView1, e))
+            if (e.ColumnIndex == 4)
             {
-                new VyriditZadost(dataGridView1, e).Show();
-                
+                if (!ZadostiKlientuController.HandleMouseClick(dataGridView1, e))
+                {
+                    new VyriditZadost(dataGridView1, e).Show();
+
+                }
             }
         }
     }

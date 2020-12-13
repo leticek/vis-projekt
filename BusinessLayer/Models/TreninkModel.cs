@@ -5,12 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
 using DTO.DTOs;
-using Google.Cloud.Firestore;
 
 
 namespace BusinessLayer
 {
-    [FirestoreData]
     public class TreninkModel
     {
         public TreninkModel(int id, int trenerId, string nazev, List<int> cviky)
@@ -34,13 +32,10 @@ namespace BusinessLayer
 
         }
 
-        [FirestoreProperty]
         public int Id { get; set; }
-        [FirestoreProperty]
+     
         public int TrenerId { get; set; }
-        [FirestoreProperty]
         public string Nazev { get; set; }
-        [FirestoreProperty]
         public List<int> Cviky { get; set; }
 
         public override string ToString()

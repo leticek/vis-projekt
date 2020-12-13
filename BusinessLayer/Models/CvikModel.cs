@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Google.Cloud.Firestore;
+
 
 namespace BusinessLayer
 {
-    [FirestoreData]
+
     public class CvikModel
     {
 
@@ -22,15 +22,15 @@ namespace BusinessLayer
             this.Poznamka = poznamka;
         }
 
-        [FirestoreProperty]
+
         public int Id { get; set; }
-        [FirestoreProperty]
+
         public string Nazev { get; set; }
-        [FirestoreProperty]
+
         public int PocetOpakovani { get; set; }
-        [FirestoreProperty]
+
         public int PocetSerii { get; set; }
-        [FirestoreProperty]
+
         public string Poznamka { get; set; }
 
         public override string ToString()

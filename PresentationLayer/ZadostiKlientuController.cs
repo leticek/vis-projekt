@@ -40,7 +40,7 @@ namespace PresentationLayer
 
         public static bool OdmitnoutZadost(DataGridView dgw, DataGridViewCellMouseEventArgs e, string reason)
         {
-            if(reason.Length <= 0)
+            if (reason.Length <= 0)
             {
                 return false;
             }
@@ -56,7 +56,7 @@ namespace PresentationLayer
         }
 
         public static void PrijmoutZadost(DataGridView dgw, DataGridViewCellMouseEventArgs e)
-        {
+        { 
             int idZadosti = (int)dgw.Rows[e.RowIndex].Tag;
             ZadostModel zadost = zadosti.Where(x => x.Id == idZadosti).ToList()[0];
             ZadostModel.DeleteById(zadost);
@@ -74,10 +74,10 @@ namespace PresentationLayer
             ZadostModel zadost = zadosti.Where(x => x.Id == idZadosti).ToList()[0];
             if (zadost.TypZadosti == DTO.Enums.TypZadosti.ZRUSENI)
             {
-                MessageBox.Show("OK", dgw.Rows[e.RowIndex].Tag.ToString());
-                PrijmoutUkonceniSpoluprace(zadost);
                 string clientName = klienti.Where(x => x.SpolupraceId == zadost.SpolupraceId).ToList()[0].Jmeno +
                     " " + klienti.Where(x => x.SpolupraceId == zadost.SpolupraceId).ToList()[0].Prijmeni;
+                MessageBox.Show($"{clientName} zrušil s Vámi spolupráci.", "Oznámení");
+                PrijmoutUkonceniSpoluprace(zadost);
                 string subject = "Trener přijal vaše oznámení";
                 string body = "Dobrý den, \ntrenér byl informován o zrušení Vaší spolupráce. \nS pozdravem VIS-FITNESS";
                 EmailSender.sendEmail(clientName, subject, body);

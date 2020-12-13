@@ -17,24 +17,20 @@ namespace ConsoleApp1
         {
 
             //generateData();
-            FirestoreDataMapper<ZadostDTO> zadostMapper = new FirestoreDataMapper<ZadostDTO>();
-            List<ZadostDTO> zadosti = new List<ZadostDTO>
+            FirestoreDataMapper<PlanovanyTreninkDTO> firestoreDataMapper = new FirestoreDataMapper<PlanovanyTreninkDTO>();
+            List<PlanovanyTreninkDTO> planovanyTreninkDTOs = new List<PlanovanyTreninkDTO>
             {
-                new ZadostDTO(1, 4, DTO.Enums.TypZadosti.PRODLOUZENI, DateTime.Now.AddDays(5)),
-                new ZadostDTO(2, 13, DTO.Enums.TypZadosti.PRODLOUZENI, DateTime.Now.AddDays(5)),
-                new ZadostDTO(3, 14, DTO.Enums.TypZadosti.ZRUSENI, DateTime.Now.AddDays(-15)),
-                new ZadostDTO(4, 19, DTO.Enums.TypZadosti.PRODLOUZENI, DateTime.Now.AddDays(7)),
-                new ZadostDTO(5, 20, DTO.Enums.TypZadosti.ZRUSENI, DateTime.Now),
-                new ZadostDTO(6, 25, DTO.Enums.TypZadosti.ZRUSENI, DateTime.Now.AddDays(-4)),
-                new ZadostDTO(7, 26, DTO.Enums.TypZadosti.PRODLOUZENI, DateTime.Now.AddDays(-15)),
-                new ZadostDTO(8, 28, DTO.Enums.TypZadosti.ZRUSENI, DateTime.Now.AddDays(10)),
+                new PlanovanyTreninkDTO(1, 1, 13, "HDP Gym", false,"Nezapomenout peníze", DateTime.Now.AddDays(13)),
+                new PlanovanyTreninkDTO(2, 1, 13, "Fitness Ring", true,"Dáme do těla", DateTime.Now.AddDays(5)),
+                new PlanovanyTreninkDTO(3, 1, 13, "Top Fitness", false,"Dneska jen odpočinek", DateTime.Now.AddDays(20)),
+                new PlanovanyTreninkDTO(4, 1, 13, "ARENA", true,"Zaměříme se na dřepy", DateTime.Now.AddDays(17)),
+                new PlanovanyTreninkDTO(5, 1, 13, "Extrifit GYM", false,"Důraz na mobilitu", DateTime.Now.AddDays(15)),
             };
 
-            foreach (ZadostDTO z in zadosti)
+            foreach (PlanovanyTreninkDTO t in planovanyTreninkDTOs)
             {
-                _ = zadostMapper.Insert(z);
+                _ = firestoreDataMapper.Insert(t);
             }
-
 
             Console.ReadKey();
         }

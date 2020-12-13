@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer;
 using DTO.DTOs;
-using Google.Cloud.Firestore;
+
 
 namespace BusinessLayer
 {
-    [FirestoreData]
+
     public class TreninkovyPlanModel
     {
         public TreninkovyPlanModel(int id, int trenerId, string nazevPlanu, DateTime platnyDo, ObtiznostTreninkovehoPlanu obtiznost, CilPlanu cilPlanu, string poznamka, List<int> treninky)
@@ -41,21 +41,21 @@ namespace BusinessLayer
 
         }
 
-        [FirestoreProperty]
+
         public int Id { get; set; }
-        [FirestoreProperty]
+
         public int TrenerId { get; set; }
-        [FirestoreProperty]
+
         public string NazevPlanu { get; set; }
-        [FirestoreProperty]
+
         public DateTime PlatnyDo { get; set; }
-        [FirestoreProperty]
+
         public ObtiznostTreninkovehoPlanu Obtiznost { get; set; }
-        [FirestoreProperty]
+
         public CilPlanu CilPlanu { get; set; }
-        [FirestoreProperty]
+
         public string Poznamka { get; set; }
-        [FirestoreProperty]
+
         public List<int> Treninky { get; set; } = new List<int>();
         public List<TreninkModel> TreninkModels { get; set; } = new List<TreninkModel>();
 

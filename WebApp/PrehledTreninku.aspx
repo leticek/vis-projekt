@@ -1,9 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="WebApplication.WebForm1" %>
+﻿<% @Page  Title="" Language="C#" MasterPageFile="~/Home.Master" AutoEventWireup="true" CodeBehind="PrehledTreninku.aspx.cs" Inherits="WebApplication.WebForm1"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ClientCalendar" runat="server">
-    <asp:Calendar ID="calendar1" runat="server"></asp:Calendar>
+    <asp:Calendar ID="calendar1" runat="server" SelectionMode="Day" OnDayRender="calendar1_DayRender" OnInit="calendar1_Init"></asp:Calendar>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="TrainingInfo" runat="server">
     Trenér:
