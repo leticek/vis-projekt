@@ -1,14 +1,13 @@
-﻿
+﻿using DataLayer.FirestoreMappers;
+using DataLayer.MSSQLMappers;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO;
-using DataLayer;
-using DTO.DTOs;
 
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
     public class TrenerModel : Uzivatel
     {
@@ -52,6 +51,13 @@ namespace BusinessLayer
         }
 
         public TrenerDTO toDTO() => new TrenerDTO(Id, Jmeno, Prijmeni, DatumNarozeni, Email, Telefon, Specializace);
+
+        public static TrenerModel GetById(int id)
+        {
+            TrenerDataMapper trenerDataMapper = new TrenerDataMapper();
+            TrenerDTO result = trenerDataMapper.GetById(id);
+            return new TrenerModel(result);
+        }
 
         public override string ToString() => $"ID: {this.Id} Jmeno: {this.Jmeno} Prijmeni: {this.Prijmeni} DatumNarozeni: {this.DatumNarozeni} Email: {this.Id} Telefon: {this.Telefon}  Specializace: {this.Specializace}";
 

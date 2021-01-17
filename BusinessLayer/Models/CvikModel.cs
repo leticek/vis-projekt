@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
-
     public class CvikModel
     {
 

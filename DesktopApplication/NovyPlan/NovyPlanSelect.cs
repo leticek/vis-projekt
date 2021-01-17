@@ -14,40 +14,39 @@ namespace DesktopApplication
 {
     public partial class NovyPlanSelect : Form
     {
-        private Form actualForm;
         private Form novyPlanNameInput;
         private Form novyPlanSablona;
-
-
-
-
-        public NovyPlanSelect()
+        private Form previousForm;
+        public NovyPlanSelect(Form previous)
         {
             InitializeComponent();
-            AktualniUzivatel<TrenerModel>.Uzivatel = new TrenerModel(1, "Uma", "Bowers", DateTime.Now.ToUniversalTime(), "email", "telefon", "Kulturistika");
+            previousForm = previous;
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void novyPlan_Select(object sender, EventArgs e)
         {
             if (novyPlanNameInput == null)
                 novyPlanNameInput = new NovyPlanNameSelect(this);
             Hide();
             novyPlanNameInput.Show();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void pouzitSablonu_Select(object sender, EventArgs e)
         {
             if (novyPlanSablona == null)
                 novyPlanSablona = new NovyPlanSablonaSelect(this);
             Hide();
             novyPlanSablona.Show();
-
         }
 
         private void NovyPlanSelect_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Close();
+            previousForm.Show();
         }
     }
 }

@@ -38,8 +38,8 @@ namespace DesktopApplication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(210, 171);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.label1.Location = new System.Drawing.Point(180, 148);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(134, 30);
             this.label1.TabIndex = 0;
@@ -47,44 +47,43 @@ namespace DesktopApplication
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(210, 204);
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 15.75F);
+            this.textBox1.Location = new System.Drawing.Point(180, 177);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(393, 35);
+            this.textBox1.Size = new System.Drawing.Size(337, 35);
             this.textBox1.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 415);
+            this.button1.Location = new System.Drawing.Point(10, 360);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(64, 20);
             this.button1.TabIndex = 2;
             this.button1.Text = "Zpět";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.Zpet_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(713, 415);
+            this.button2.Location = new System.Drawing.Point(603, 360);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(71, 20);
             this.button2.TabIndex = 3;
             this.button2.Text = "Pokračovat";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.pokracovat_Click);
             // 
             // NovyPlanNameSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(686, 390);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "NovyPlanNameSelect";
             this.Text = "NovyPlanNameSelect";
-            this.Load += new System.EventHandler(this.NovyPlanNameSelect_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

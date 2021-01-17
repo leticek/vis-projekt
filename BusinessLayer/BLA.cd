@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="BusinessLayer.Uzivatel">
+    <Position X="11.75" Y="7.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAACAAAAAAAAAAEBAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Uzivatel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BusinessLayer.Models.KlientModel">
+    <Position X="13" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAUAAAAQAAAACCAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Models\KlientModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Trener" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.Models.SpolupraceModel">
+    <Position X="10" Y="13.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIgAACAAAAAAAAAUAAAAQgAAACCAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SpolupraceModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Trener" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BusinessLayer.Models.TrenerModel">
+    <Position X="10" Y="10" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAEAAAAAAAAAAQAAgAAAAAAQAAAAIA=</HashCode>
+      <FileName>Models\TrenerModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="Treninky" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BusinessLayer.Models.TreninkModel">
+    <Position X="5.75" Y="10" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAAAAEAAUAAAAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Models\TreninkModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BusinessLayer.Models.TreninkovyPlanModel">
+    <Position X="5.25" Y="5.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAQAAAAAAUAIAARAAACIAAQgBAgAAAAAAAAAg=</HashCode>
+      <FileName>Models\TreninkovyPlanModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CilPlanu" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TreninkModels" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="BusinessLayer.Models.ZadostModel">
+    <Position X="8.5" Y="0.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAgCAAAAAAAAAAAEAAAAQAAAACACAAAAgAAIAAAAAAA=</HashCode>
+      <FileName>Models\ZadostModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TypZadosti" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DTO.DTO.TreninkovyPlanDTO">
+    <Position X="0.5" Y="2.75" Width="3.25" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="CilPlanu" />
+      <Property Name="Obtiznost" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DTO.DTO.ZadostDTO">
+    <Position X="13" Y="4.25" Width="2.25" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="TypZadosti" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="DTO.Enums.TypZadosti">
+    <Position X="10.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="DTO.Enums.CilPlanu">
+    <Position X="2.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Enum Name="DTO.Enums.ObtiznostTreninkovehoPlanuEnum">
+    <Position X="1" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

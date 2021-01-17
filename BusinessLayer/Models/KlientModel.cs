@@ -1,12 +1,12 @@
-﻿using DataLayer;
-using DTO.DTOs;
+﻿using DataLayer.MSSQLMappers;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
     public class KlientModel : Uzivatel
     {

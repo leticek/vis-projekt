@@ -1,12 +1,13 @@
-﻿using System;
+﻿using DataLayer.Interfaces;
+using DTO.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTO.DTOs;
 
-namespace DataLayer
+namespace DataLayer.MSSQLMappers
 {
     public class KlientDataMapper : ISQLDataMapper<KlientDTO>
     {
@@ -70,13 +71,13 @@ namespace DataLayer
                 conn.Open();
                 SqlCommand sqlCommand = conn.CreateCommand();
                 sqlCommand.CommandText = queryText;
-                
+
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 List<KlientDTO> result = new List<KlientDTO>();
                 while (reader.Read())
                 {
-                    result.Add( new KlientDTO(
+                    result.Add(new KlientDTO(
                         reader.GetInt32(reader.GetOrdinal("klient_id")),
                         reader.GetString(reader.GetOrdinal("jmeno")),
                         reader.GetString(reader.GetOrdinal("prijmeni")),
@@ -138,4 +139,3 @@ namespace DataLayer
         }
     }
 }
-

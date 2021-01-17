@@ -2,7 +2,6 @@
 using BusinessLayer.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace PresentationLayer
     public static class ZadostiKlientuController
     {
         private static List<ZadostModel> zadosti = new List<ZadostModel>();
-        private static List<KlientModel> klienti = new List<KlientModel>();
+        private static readonly List<KlientModel> klienti = new List<KlientModel>();
         public static async void LoadZadosti(DataGridView dataGridView)
         {
             zadosti.Clear();
@@ -51,21 +50,21 @@ namespace PresentationLayer
                     " " + klienti.Where(x => x.SpolupraceId == zadost.SpolupraceId).ToList()[0].Prijmeni;
             string subject = "Spolupráce nebyla prodloužena";
             string body = $"Dobrý den, trenér odmítl Váš požadavek z následujících důvodů: \n {reason} \nS pozdravem VIS-FITNESS";
-            EmailSender.sendEmail(clientName, subject, body);
+            EmailSender.SendEmail(clientName, subject, body);
             return true;
         }
 
         public static void PrijmoutZadost(DataGridView dgw, DataGridViewCellMouseEventArgs e)
-        { 
+        {
             int idZadosti = (int)dgw.Rows[e.RowIndex].Tag;
             ZadostModel zadost = zadosti.Where(x => x.Id == idZadosti).ToList()[0];
             ZadostModel.DeleteById(zadost);
-            SpolupraceModel.prodlouzitSpolupraci(zadost.SpolupraceId);
+            SpolupraceModel.ProdlouzitSpolupraci(zadost.SpolupraceId);
             string clientName = klienti.Where(x => x.SpolupraceId == zadost.SpolupraceId).ToList()[0].Jmeno +
                     " " + klienti.Where(x => x.SpolupraceId == zadost.SpolupraceId).ToList()[0].Prijmeni;
             string subject = "Spolupráce prodloužena";
             string body = "Dobrý den, \ntrenér přijal Váš požadavek o prodloužení spolupráce. \nS pozdravem VIS-FITNESS";
-            EmailSender.sendEmail(clientName, subject, body);
+            EmailSender.SendEmail(clientName, subject, body);
         }
 
         public static bool HandleMouseClick(DataGridView dgw, DataGridViewCellMouseEventArgs e)
@@ -80,7 +79,7 @@ namespace PresentationLayer
                 PrijmoutUkonceniSpoluprace(zadost);
                 string subject = "Trener přijal vaše oznámení";
                 string body = "Dobrý den, \ntrenér byl informován o zrušení Vaší spolupráce. \nS pozdravem VIS-FITNESS";
-                EmailSender.sendEmail(clientName, subject, body);
+                EmailSender.SendEmail(clientName, subject, body);
                 LoadZadosti(dgw);
                 return true;
             }

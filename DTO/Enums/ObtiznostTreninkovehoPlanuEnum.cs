@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer
+namespace DTO.Enums
 {
-    public enum ObtiznostTreninkovehoPlanu
+    public enum ObtiznostTreninkovehoPlanuEnum
     {
         ZACATECNIK = 0,
         STREDNE_POKROCILY = 1,

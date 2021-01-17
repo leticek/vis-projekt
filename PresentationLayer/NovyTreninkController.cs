@@ -1,4 +1,5 @@
-﻿using BusinessLayer;
+﻿using BusinessLayer.Models;
+using DTO.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace PresentationLayer
     {
         static public string NovyTreninkName { get; set; }
         private static TreninkovyPlanModel TreninkovyPlanModel = new TreninkovyPlanModel();
-        private static string[] obtiznostPlanuValues = { "Začátečník", "Středně pokročilý", "Pokročilý", "Expert" };
-        private static string[] cilPlanuValues = { "Redukce tuku", "Tvarování postavy", "Zvýšení síly", "Zlepšení kondice" };
+        private static readonly string[] obtiznostPlanuValues = { "Začátečník", "Středně pokročilý", "Pokročilý", "Expert" };
+        private static readonly string[] cilPlanuValues = { "Redukce tuku", "Tvarování postavy", "Zvýšení síly", "Zlepšení kondice" };
         private static List<string> loadedSablona;
 
-        public static bool checkName(string name)
+        public static bool CheckName(string name)
         {
             TrenerModel trener = AktualniUzivatel<TrenerModel>.Uzivatel;
             List<TreninkModel> result = trener.Treninky.Where(x => x.Nazev.Equals(name)).ToList();
@@ -26,14 +27,14 @@ namespace PresentationLayer
             return true;
         }
 
-        public static async void sablonaSelect(string name)
+        public static async void SablonaSelect(string name)
         {
             TreninkovyPlanModel = await TreninkovyPlanModel.GetByName(AktualniUzivatel<TrenerModel>.Uzivatel.Id, name);
         }
 
-        public static async void loadPlans(ComboBox comboBox)
+        public static async void LoadPlans(ComboBox comboBox)
         {
-            List<TreninkovyPlanModel> result  = await TreninkovyPlanModel.GetByTrenerId(AktualniUzivatel<TrenerModel>.Uzivatel.Id);
+            List<TreninkovyPlanModel> result = await TreninkovyPlanModel.GetByTrenerId(AktualniUzivatel<TrenerModel>.Uzivatel.Id);
             loadedSablona = new List<string>();
             result.ForEach(x => loadedSablona.Add(x.NazevPlanu));
             comboBox.Items.Add("-");
@@ -41,18 +42,17 @@ namespace PresentationLayer
             result.ForEach(x => comboBox.Items.Add(x.NazevPlanu));
         }
 
-        public static void loadPlanConfiguration(ComboBox obtiznostCB, ComboBox cilCB, DateTimePicker dateTimePicker1, TextBox textBox1)
+        public static void LoadPlanConfiguration(ComboBox obtiznostCB, ComboBox cilCB, DateTimePicker dateTimePicker1, TextBox textBox1)
         {
-            MessageBox.Show(TreninkovyPlanModel.ToString());
-            setCilPlanu(cilCB);
-            setObtiznost(obtiznostCB);
-            cilCB.SelectedIndex  = (int)Enum.Parse(typeof(CilPlanu), TreninkovyPlanModel.CilPlanu.ToString());
+            SetCilPlanu(cilCB);
+            SetObtiznost(obtiznostCB);
+            cilCB.SelectedIndex = (int)Enum.Parse(typeof(CilPlanu), TreninkovyPlanModel.CilPlanu.ToString());
             obtiznostCB.SelectedIndex = (int)TreninkovyPlanModel.Obtiznost;
             dateTimePicker1.Value = TreninkovyPlanModel.PlatnyDo;
             textBox1.Text = TreninkovyPlanModel.Poznamka;
         }
 
-        public static void populateAddTrenink(DataGridView dataGridView1, DataGridView dataGridView2, Label cilLabel, Label trvaniLabel, Label obtiznostLabel)
+        public static void PopulateAddTrenink(DataGridView dataGridView1, DataGridView dataGridView2, Label cilLabel, Label trvaniLabel, Label obtiznostLabel)
         {
             foreach (TreninkModel treninkModel in AktualniUzivatel<TrenerModel>.Uzivatel.Treninky)
             {
@@ -74,7 +74,7 @@ namespace PresentationLayer
             trvaniLabel.Text = TreninkovyPlanModel.PlatnyDo.ToShortDateString();
         }
 
-        public static async Task<bool> saveTrenink(DataGridView dataGridView2)
+        public static async Task<bool> SaveTrenink(DataGridView dataGridView2)
         {
             if (dataGridView2.Rows.Count >= 3)
             {
@@ -94,7 +94,7 @@ namespace PresentationLayer
             }
         }
 
-        public static bool checkPlanConfiguration(DateTime pickedDate, string note)
+        public static bool CheckPlanConfiguration(DateTime pickedDate, string note)
         {
             if (note.Length > 0 && pickedDate.CompareTo(DateTime.Now.AddDays(10)) >= 0)
             {
@@ -103,23 +103,21 @@ namespace PresentationLayer
             return false;
         }
 
-        public static void setObtiznost(ComboBox comboBox)
+        public static void SetObtiznost(ComboBox comboBox)
         {
             comboBox.Items.AddRange(obtiznostPlanuValues);
             comboBox.SelectedIndex = 0;
         }
 
-        public static void setCilPlanu(ComboBox comboBox)
+        public static void SetCilPlanu(ComboBox comboBox)
         {
             comboBox.Items.AddRange(cilPlanuValues);
             comboBox.SelectedIndex = 0;
         }
 
-        
-
-        public static void savePlanConfiguration(DateTime pickedDate, string note, int cilPlanu, int obtiznostPlanu)
+        public static void SavePlanConfiguration(DateTime pickedDate, string note, int cilPlanu, int obtiznostPlanu)
         {
-            TreninkovyPlanModel.Obtiznost = (ObtiznostTreninkovehoPlanu)obtiznostPlanu;
+            TreninkovyPlanModel.Obtiznost = (ObtiznostTreninkovehoPlanuEnum)obtiznostPlanu;
             TreninkovyPlanModel.CilPlanu = (CilPlanu)cilPlanu;
             TreninkovyPlanModel.PlatnyDo = pickedDate;
             TreninkovyPlanModel.Poznamka = note;
@@ -127,7 +125,7 @@ namespace PresentationLayer
 
         public static bool ZkontrolujPocetTreninku()
         {
-            return TreninkovyPlanModel.Treninky.Count <= 0 ? true : false;
+            return TreninkovyPlanModel.Treninky.Count <= 0;
         }
     }
 }

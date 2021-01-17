@@ -1,13 +1,12 @@
-﻿using System;
+﻿using DataLayer.FirestoreMappers;
+using DTO.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataLayer;
-using DTO.DTOs;
 
-
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
     public class TreninkModel
     {
@@ -33,7 +32,7 @@ namespace BusinessLayer
         }
 
         public int Id { get; set; }
-     
+
         public int TrenerId { get; set; }
         public string Nazev { get; set; }
         public List<int> Cviky { get; set; }

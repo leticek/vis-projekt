@@ -1,18 +1,17 @@
-﻿using System;
+﻿using DataLayer.FirestoreMappers;
+using DTO.DTO;
+using DTO.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataLayer;
-using DTO.DTOs;
 
-
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
-
     public class TreninkovyPlanModel
     {
-        public TreninkovyPlanModel(int id, int trenerId, string nazevPlanu, DateTime platnyDo, ObtiznostTreninkovehoPlanu obtiznost, CilPlanu cilPlanu, string poznamka, List<int> treninky)
+        public TreninkovyPlanModel(int id, int trenerId, string nazevPlanu, DateTime platnyDo, ObtiznostTreninkovehoPlanuEnum obtiznost, CilPlanu cilPlanu, string poznamka, List<int> treninky)
         {
             this.Id = id;
             this.TrenerId = trenerId;
@@ -50,7 +49,7 @@ namespace BusinessLayer
 
         public DateTime PlatnyDo { get; set; }
 
-        public ObtiznostTreninkovehoPlanu Obtiznost { get; set; }
+        public ObtiznostTreninkovehoPlanuEnum Obtiznost { get; set; }
 
         public CilPlanu CilPlanu { get; set; }
 
@@ -62,8 +61,8 @@ namespace BusinessLayer
         public async void Save()
         {
             FirestoreDataMapper<TreninkovyPlanDTO> firestoreDataMapper = new FirestoreDataMapper<TreninkovyPlanDTO>();
-            TreninkovyPlanDTO tmp = this.toDTO();
-            foreach(TreninkModel treninkModel in TreninkModels)
+            TreninkovyPlanDTO tmp = this.ToDTO();
+            foreach (TreninkModel treninkModel in TreninkModels)
             {
                 tmp.Treninky.Add(treninkModel.Id);
             }
@@ -73,9 +72,15 @@ namespace BusinessLayer
         static public async Task<List<TreninkovyPlanModel>> GetByTrenerId(int id)
         {
             FirestoreDataMapper<TreninkovyPlanDTO> firestoreDataMapper = new FirestoreDataMapper<TreninkovyPlanDTO>();
-            List<TreninkovyPlanDTO> result = await firestoreDataMapper.GetByParameter("TrenerId",id);
-            List<TreninkovyPlanModel> list =  result.Select(x => new TreninkovyPlanModel(x)).ToList();
+            List<TreninkovyPlanDTO> result = await firestoreDataMapper.GetByParameter("TrenerId", id);
+            List<TreninkovyPlanModel> list = result.Select(x => new TreninkovyPlanModel(x)).ToList();
             return list;
+        }
+
+        public static async Task<bool> Remove(PlanovanyTreninkModel currentSelection)
+        {
+            FirestoreDataMapper<TreninkovyPlanDTO> firestoreDataMapper = new FirestoreDataMapper<TreninkovyPlanDTO>();
+            return await firestoreDataMapper.Delete(currentSelection.Id);
         }
 
         static public async Task<TreninkovyPlanModel> GetByName(int id, string name)
@@ -84,7 +89,7 @@ namespace BusinessLayer
             return byName.Where(x => x.NazevPlanu.Equals(name)).ToList()[0];
         }
 
-        public TreninkovyPlanDTO toDTO() => new TreninkovyPlanDTO(Id, TrenerId, NazevPlanu, PlatnyDo, Obtiznost, CilPlanu, Poznamka, Treninky);
+        public TreninkovyPlanDTO ToDTO() => new TreninkovyPlanDTO(Id, TrenerId, NazevPlanu, PlatnyDo, Obtiznost, CilPlanu, Poznamka, Treninky);
 
         public override string ToString()
         {

@@ -1,13 +1,13 @@
-﻿using DTO.DTOs;
+﻿using DataLayer.Interfaces;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer
+namespace DataLayer.MSSQLMappers
 {
     public class SpolupraceDataMapper : ISQLDataMapper<SpolupraceDTO>
     {
@@ -136,21 +136,21 @@ namespace DataLayer
 
                     SqlDataReader reader = sqlCommand.ExecuteReader();
                     List<SpolupraceDTO> result = new List<SpolupraceDTO>();
-                    while(reader.Read())
-                    {                         
+                    while (reader.Read())
+                    {
                         result.Add(new SpolupraceDTO(
                             reader.GetInt32(reader.GetOrdinal("spoluprace_id")),
                             reader.GetInt32(reader.GetOrdinal("trener_id")),
                             reader.GetDateTime(reader.GetOrdinal("platnost")),
                             (decimal)reader.GetSqlMoney(reader.GetOrdinal("cena"))));
-                        
+
                     }
                     return result;
                 }
             }
             catch (Exception e)
             {
-                Debug.WriteLine(e.ToString());
+                Console.WriteLine(e);
                 return null;
             }
         }

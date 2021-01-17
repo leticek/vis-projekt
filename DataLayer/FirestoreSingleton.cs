@@ -12,7 +12,7 @@ namespace DataLayer
         FirestoreSingleton()
         {
         }
-        private static readonly string path = @"C:\Users\smiea\source\repos\vis_projekt\DataLayer\creds.json";
+        private static readonly string path = "creds.json";
         private static readonly object padlock = new object();
         private static FirestoreDb instance = null;
         public static FirestoreDb Instance

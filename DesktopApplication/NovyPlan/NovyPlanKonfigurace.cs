@@ -5,14 +5,55 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using PresentationLayer;
 
 namespace DesktopApplication
 {
     public partial class NovyPlanKonfigurace : Form
     {
-        public NovyPlanKonfigurace()
+
+        public Form previousForm;
+        public Form nextForm;
+        public NovyPlanKonfigurace(Form previous)
         {
             InitializeComponent();
+            previousForm = previous;
+        }
+
+        private void zpet_Click(object sender, EventArgs e)
+        {
+            Hide();
+            previousForm.Show();
+        }
+
+        private void pokracovat_Click(object sender, EventArgs e)
+        {
+            if (NovyTreninkController.CheckPlanConfiguration(dateTimePicker1.Value, textBox1.Text))
+            {
+                if (nextForm == null)
+                    nextForm = new NovyPlanAddTrenink(this);
+                NovyTreninkController.SavePlanConfiguration(dateTimePicker1.Value, textBox1.Text, cilCB.SelectedIndex, obtiznostCB.SelectedIndex);
+                Hide();
+                nextForm.Show();
+            }
+            else
+            {
+                MessageBox.Show("Prosím vyplňte všechny pole. (Plán musí trvat aspoň 10 dní)", "Chyba", MessageBoxButtons.OK);
+            }
+        }
+
+        private void NovyPlanKonfigurace_Load(object sender, EventArgs e)
+        {
+            if (previousForm.GetType() == typeof(NovyPlanNameSelect) && NovyTreninkController.ZkontrolujPocetTreninku())
+            {
+                NovyTreninkController.SetObtiznost(obtiznostCB);
+                NovyTreninkController.SetCilPlanu(cilCB);
+            }
+            else
+            {
+                NovyTreninkController.LoadPlanConfiguration(obtiznostCB, cilCB, dateTimePicker1, textBox1);
+            }
+
         }
     }
 }

@@ -11,7 +11,8 @@ namespace DesktopApplication
 {
     public partial class NovyPlanNameSelect : Form
     {
-        private Form previousForm;
+        public Form previousForm;
+        public Form nextForm;
 
         public NovyPlanNameSelect(Form previous)
         {
@@ -19,25 +20,25 @@ namespace DesktopApplication
             this.previousForm = previous;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Zpet_Click(object sender, EventArgs e)
         {
             Hide();
             previousForm.Show();
 
         }
 
-        private void NovyPlanNameSelect_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void pokracovat_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length > 0)
             {
-                if (NovyTreninkController.checkName(textBox1.Text))
+                if (NovyTreninkController.CheckName(textBox1.Text))
                 {
+                    NovyTreninkController.NovyTreninkName = textBox1.Text;
+                    if (nextForm == null)
+                        nextForm = new NovyPlanKonfigurace(this);
                     Hide();
+                    nextForm.Show(this);
+
                 }
                 else
                 {

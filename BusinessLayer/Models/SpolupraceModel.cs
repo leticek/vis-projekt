@@ -1,12 +1,12 @@
-﻿using DataLayer;
-using DTO.DTOs;
+﻿using DataLayer.MSSQLMappers;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLayer
+namespace BusinessLayer.Models
 {
     public class SpolupraceModel
     {
@@ -32,9 +32,9 @@ namespace BusinessLayer
         public DateTime Platnost { get; set; }
         public decimal Cena { get; set; }
 
-        public SpolupraceDTO ToDTO() => new SpolupraceDTO(SpolupraceId, TrenerId, Platnost, Cena); 
+        public SpolupraceDTO ToDTO() => new SpolupraceDTO(SpolupraceId, TrenerId, Platnost, Cena);
 
-        public static void prodlouzitSpolupraci(int id)
+        public static void ProdlouzitSpolupraci(int id)
         {
             SpolupraceDataMapper spolupraceDataMapper = new SpolupraceDataMapper();
             SpolupraceDTO spolupraceDTO = spolupraceDataMapper.GetById(id);

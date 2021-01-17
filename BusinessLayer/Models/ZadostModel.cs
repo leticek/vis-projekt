@@ -1,5 +1,6 @@
-﻿using DataLayer;
-using DTO.DTOs;
+﻿using DataLayer.FirestoreMappers;
+using DataLayer.MSSQLMappers;
+using DTO.DTO;
 using DTO.Enums;
 using System;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace BusinessLayer.Models
         {
 
         }
-       
+
         public ZadostModel(ZadostDTO zadostDTO)
         {
             Id = zadostDTO.Id;
             SpolupraceId = zadostDTO.SpolupraceId;
             TypZadosti = zadostDTO.TypZadosti;
             Datum = zadostDTO.Datum;
-            
+
         }
         public int Id { get; set; }
         public int SpolupraceId { get; set; }
@@ -42,7 +43,7 @@ namespace BusinessLayer.Models
             spolupraceResult = spolupraceResult.Where(x => x.TrenerId == id).ToList();
             List<ZadostDTO> zadostDTOs = new List<ZadostDTO>();
             FirestoreDataMapper<ZadostDTO> zadostMapper = new FirestoreDataMapper<ZadostDTO>();
-            foreach(SpolupraceDTO spoluprace in spolupraceResult)
+            foreach (SpolupraceDTO spoluprace in spolupraceResult)
             {
                 List<ZadostDTO> tmp = await zadostMapper.GetByParameter("SpolupraceId", spoluprace.SpolupraceId);
                 if (tmp.Count > 0)

@@ -1,5 +1,5 @@
-﻿using DTO;
-using DTO.DTOs;
+﻿using DataLayer.Interfaces;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer
+namespace DataLayer.MSSQLMappers
 {
     public class TrenerDataMapper : ISQLDataMapper<TrenerDTO>
     {
@@ -36,7 +36,7 @@ namespace DataLayer
                 conn.Open();
                 SqlCommand sqlCommand = conn.CreateCommand();
                 sqlCommand.CommandText = queryText;
-                sqlCommand.Parameters.AddWithValue("klient_id", id);
+                sqlCommand.Parameters.AddWithValue("trener_id", id);
 
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 if (reader.Read())
@@ -74,8 +74,8 @@ namespace DataLayer
                 if (result == 1)
                 {
                     sqlCommand.Dispose();
-                    conn.Close(); 
-                    return true;  
+                    conn.Close();
+                    return true;
                 }
             }
             return false;

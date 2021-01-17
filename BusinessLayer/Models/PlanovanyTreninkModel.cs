@@ -1,5 +1,5 @@
-﻿using DataLayer;
-using DTO.DTOs;
+﻿using DataLayer.FirestoreMappers;
+using DTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,8 +41,6 @@ namespace BusinessLayer.Models
         public string Poznamka { get; set; }
         public DateTime CasKonani { get; set; }
 
-        PlanovanyTreninkDTO ToDTO() => new PlanovanyTreninkDTO(Id, IdTrenera, IdKlienta, MistoKonani, Potvrzen, Poznamka, CasKonani);
-
         public static async Task<List<PlanovanyTreninkModel>> GetAllByKlientId(int id)
         {
             FirestoreDataMapper<PlanovanyTreninkDTO> firestoreDataMapper = new FirestoreDataMapper<PlanovanyTreninkDTO>();
@@ -51,5 +49,27 @@ namespace BusinessLayer.Models
             return result;
         }
 
+        public static async Task<bool> Remove(PlanovanyTreninkModel currentSelection)
+        {
+            FirestoreDataMapper<PlanovanyTreninkDTO> firestoreDataMapper = new FirestoreDataMapper<PlanovanyTreninkDTO>();
+            return await firestoreDataMapper.Delete(currentSelection.Id);
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {Id} Misto: {MistoKonani}";
+        }
+        public static async Task Save(PlanovanyTreninkModel currentSelection)
+        {
+            FirestoreDataMapper<PlanovanyTreninkDTO> firestoreDataMapper = new FirestoreDataMapper<PlanovanyTreninkDTO>();
+            PlanovanyTreninkDTO planovanyTreninkDTO = new PlanovanyTreninkDTO(currentSelection.Id, 
+                                                                                currentSelection.IdTrenera,
+                                                                                currentSelection.IdKlienta,
+                                                                                currentSelection.MistoKonani,
+                                                                                currentSelection.Potvrzen,
+                                                                                currentSelection.Poznamka,
+                                                                                currentSelection.CasKonani.ToUniversalTime());
+            await firestoreDataMapper.Update(planovanyTreninkDTO);
+        }
     }
 }
